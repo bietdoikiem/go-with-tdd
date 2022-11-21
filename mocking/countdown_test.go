@@ -24,4 +24,5 @@ Go!`
 	if spySleeper.Calls != 3 {
 		t.Errorf("not enough calls to sleeper, want 3 got %d", spySleeper.Calls)
 	}
+
 }

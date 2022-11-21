@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	// Default sleeper init
 	defaultSleeper := &mocking.DefaultSleeper{}
 	mocking.Countdown(os.Stdout, defaultSleeper)
 }
