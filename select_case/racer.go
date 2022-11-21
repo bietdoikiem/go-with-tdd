@@ -1,4 +1,4 @@
-package selection
+package select_case
 
 import (
 	"fmt"
