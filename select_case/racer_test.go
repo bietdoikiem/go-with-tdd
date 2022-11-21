@@ -32,15 +32,14 @@ func TestRacer(t *testing.T) {
 	})
 
 	t.Run("return an error if a server doesn't respond within 10 seconds", func(t *testing.T) {
-		slowServer := makeDelayTestServer(15 * time.Millisecond)
-		fastServer := makeDelayTestServer(11 * time.Millisecond)
+		slowServer := makeDelayTestServer(20 * time.Millisecond)
+		fastServer := makeDelayTestServer(15 * time.Millisecond)
 
 		defer slowServer.Close()
 		defer fastServer.Close()
 
 		slowURL := slowServer.URL
 		fastURL := fastServer.URL
-
 		_, err := ConfigurableRacer(slowURL, fastURL, 10*time.Millisecond)
 
 		if err == nil {

@@ -15,12 +15,14 @@ func Racer(urlA, urlB string) (winner string, err error) {
 // ConfigurableRacer returns the winner's URL based on response time of
 // urlA and urlB
 func ConfigurableRacer(urlA, urlB string, timeout time.Duration) (winner string, err error) {
+	timer := time.After(timeout)
 	select {
 	case <-ping(urlA):
 		return urlA, nil
 	case <-ping(urlB):
 		return urlB, nil
-	case <-time.After(timeout):
+	case <-timer:
+		fmt.Println("timed out!")
 		return "", fmt.Errorf("timed out waiting for %s and %s", urlA, urlB)
 	}
 }
